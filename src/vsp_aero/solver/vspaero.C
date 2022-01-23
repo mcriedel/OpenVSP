@@ -1940,6 +1940,8 @@ void LoadCaseFile(void)
     NumberofSurveyPoints_ = 0;
     
     Done = 0;
+
+	bool survey_read = false;
         
     while ( !Done && fgets(DumChar,2000,case_file) != NULL ) {
 
@@ -1951,6 +1953,8 @@ void LoadCaseFile(void)
           
           VSP_VLM().SetNumberOfSurveyPoints(NumberofSurveyPoints_);
           
+		  survey_read = true;
+
           for ( i = 1 ; i <= NumberofSurveyPoints_ ; i++ ) {
              
              fscanf(case_file,"%d %lf %lf %lf \n",&j,&x,&y,&z);
@@ -1966,6 +1970,42 @@ void LoadCaseFile(void)
        }
        
     }
+
+	// read external survey file if data is not within .vspaero
+	if (!survey_read) {
+		File *surveyFile = NULL;
+		file_name_surv char[2000];
+		SPRINTF(file_name_surv, "%s.svygrid", FileName);
+
+		if ((surveyFile = fopen(file_name_surv, "r")) != NULL) {
+			while (fgets(DumChar, 2000, surveyFile) != NULL) {
+
+				if (strstr(DumChar, "NumberofSurveyPoints") != NULL) {
+
+					sscanf(DumChar, "NumberofSurveyPoints = %d \n", &NumberofSurveyPoints_);
+
+					PRINTF("NumberofSurveyPoints: %d \n", NumberofSurveyPoints_);
+
+					VSP_VLM().SetNumberOfSurveyPoints(NumberofSurveyPoints_);
+
+					survey_read = true;
+
+					for (i = 1; i <= NumberofSurveyPoints_; i++) {
+
+						fscanf(case_file, "%d %lf %lf %lf \n", &j, &x, &y, &z);
+
+						PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n", i, x, y, z);
+
+						VSP_VLM().SurveyPointList(i).x() = x;
+						VSP_VLM().SurveyPointList(i).y() = y;
+						VSP_VLM().SurveyPointList(i).z() = z;
+
+					}
+				}
+			}
+			fclose(surveyFile);
+		}
+	}
     
     // Load in unsteady aero data
     
