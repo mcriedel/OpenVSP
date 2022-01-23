@@ -1973,8 +1973,8 @@ void LoadCaseFile(void)
 
 	// read external survey file if data is not within .vspaero
 	if (!survey_read) {
-		File *surveyFile = NULL;
-		file_name_surv char[2000];
+		FILE *surveyFile = NULL;
+		char file_name_surv[2000];
 		SPRINTF(file_name_surv, "%s.svygrid", FileName);
 
 		if ((surveyFile = fopen(file_name_surv, "r")) != NULL) {
