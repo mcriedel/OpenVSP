@@ -6,3 +6,5 @@ inst/
 __pycache__/
 *.egg-info
 *.vscode
+src/.vs
+VSP_Libraries
