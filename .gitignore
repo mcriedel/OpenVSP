@@ -8,3 +8,5 @@ __pycache__/
 *.vscode
 src/.vs
 VSP_Libraries
+.vs
+.vs/*

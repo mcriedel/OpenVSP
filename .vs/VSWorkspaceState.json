@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\vsp_aero",
+    "\\src\\vsp_aero\\solver"
+  ],
+  "SelectedNode": "\\src\\vsp_aero\\solver\\vspaero.C",
+  "PreviewInSolutionExplorer": false
+}

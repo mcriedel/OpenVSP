@@ -1992,7 +1992,7 @@ void LoadCaseFile(void)
 
 					for (i = 1; i <= NumberofSurveyPoints_; i++) {
 
-						fscanf(case_file, "%d %lf %lf %lf \n", &j, &x, &y, &z);
+						fscanf(surveyFile, "%d %lf %lf %lf \n", &j, &x, &y, &z);
 
 						PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n", i, x, y, z);
 
