@@ -1994,7 +1994,7 @@ void LoadCaseFile(void)
 
 						fscanf(surveyFile, "%d %lf %lf %lf \n", &j, &x, &y, &z);
 
-						PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n", i, x, y, z);
+						//PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n", i, x, y, z);
 
 						VSP_VLM().SurveyPointList(i).x() = x;
 						VSP_VLM().SurveyPointList(i).y() = y;
