@@ -1959,7 +1959,7 @@ void LoadCaseFile(void)
              
              fscanf(case_file,"%d %lf %lf %lf \n",&j,&x,&y,&z);
              
-             PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n",i,x,y,z);
+             //PRINTF("Survey Point: %10d: %10.5f %10.5f %10.5f \n",i,x,y,z);
              
              VSP_VLM().SurveyPointList(i).x() = x;
              VSP_VLM().SurveyPointList(i).y() = y;
@@ -1989,6 +1989,8 @@ void LoadCaseFile(void)
 					VSP_VLM().SetNumberOfSurveyPoints(NumberofSurveyPoints_);
 
 					survey_read = true;
+					
+					PRINTF("Located %10d survey points in a .svygrid file.\n", NumberofSurveyPoints_);
 
 					for (i = 1; i <= NumberofSurveyPoints_; i++) {
 
